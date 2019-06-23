@@ -9,65 +9,181 @@ import org.junit.Test;
 public class SinglyLinkedListTest {
 
     @Test
-    public void add() {
-        SinglyLinkedList<Integer> sll = new SinglyLinkedList<Integer>();
+    public void add_HappyPath() {
+        SinglyLinkedList<Integer> sll = new SinglyLinkedList<Integer>(5);
         Integer expected = 665;
         sll.add(expected);
 
-        Integer actual = sll.get(0);
+        Integer actual = sll.getStart().getNext().getContent();
+        Assert.assertEquals(expected, actual);
+    }
+
+    @Test
+    public void add_RepeatedAdding() {
+        SinglyLinkedList<Integer> sll = new SinglyLinkedList<Integer>(123456);
+        Integer expected = 665;
+
+        sll.add(expected);
+        sll.add(expected);
+
+        Integer actual = sll.getStart().getNext().getNext().getContent();
 
         Assert.assertEquals(expected, actual);
     }
 
     @Test
-    public void add1() {
+    public void add_emptyListFromDefaultConstructor() {
         SinglyLinkedList<Integer> sll = new SinglyLinkedList<Integer>();
         Integer expected = 665;
-        sll.add(7);
+
         sll.add(expected);
 
-        Integer actual = sll.get(1);
+        Integer actual = sll.getStart().getContent();
 
         Assert.assertEquals(expected, actual);
     }
 
     @Test
-    public void remove1() {
-        SinglyLinkedList<Integer> sll = new SinglyLinkedList<Integer>();
-        sll.add(7);
-        sll.add(5);
-        sll.add(6);
+    public void contains_happyPath() {
+        SinglyLinkedList<Integer> sll = new SinglyLinkedList<Integer>(5);
+        Assert.assertTrue(sll.contains(5));
+    }
 
-        sll.remove(0);
+    @Test
+    public void contains_falseOnEmptyList() {
+        SinglyLinkedList<Integer> sll = new SinglyLinkedList<Integer>();
+        Assert.assertFalse(sll.contains(5));
+    }
+
+    @Test
+    public void contains_happyPathLongerList() {
+        SinglyLinkedList<Integer> sll = new SinglyLinkedList<Integer>(5);
+        sll.add(10);
+        Assert.assertTrue(sll.contains(10));
+    }
+
+    @Test
+    public void contains_falseOnLongerList() {
+        SinglyLinkedList<Integer> sll = new SinglyLinkedList<Integer>(5);
+        sll.add(10);
+        Assert.assertFalse(sll.contains(7));
+    }
+
+    @Test
+    public void find_happyPath() {
+        SinglyLinkedList<Integer> sll = new SinglyLinkedList<Integer>(5);
+        sll.add(10);
+        Integer actual = sll.find(10);
+        Assert.assertTrue(actual == 1);
+    }
+
+    @Test
+    public void find_emptyList() {
+        SinglyLinkedList<Integer> sll = new SinglyLinkedList<Integer>();
+        Integer actual = sll.find(10);
+        Assert.assertTrue(actual == -1);
+    }
+
+    @Test
+    public void find_notInList() {
+        SinglyLinkedList<Integer> sll = new SinglyLinkedList<Integer>(5);
+        sll.add(10);
+        Integer actual = sll.find(666);
+        Assert.assertTrue(actual == -1);
+    }
+
+    @Test
+    public void size_happyPath() {
+        SinglyLinkedList<Integer> sll = new SinglyLinkedList<Integer>(5);
+        sll.add(10);
+        Integer actual = sll.size();
+        Assert.assertEquals(new Integer(2), actual);
+    }
+
+    @Test
+    public void size_oneNode() {
+        SinglyLinkedList<Integer> sll = new SinglyLinkedList<Integer>(5);
+        Integer actual = sll.size();
+        Assert.assertEquals(new Integer(1), actual);
+    }
+
+    @Test
+    public void size_emptyList() {
+        SinglyLinkedList<Integer> sll = new SinglyLinkedList<Integer>();
+        Integer actual = sll.size();
+        Assert.assertEquals((Integer) 0, actual);
+    }
+
+    @Test
+    public void get_happyPath() {
+        SinglyLinkedList<Integer> sll = new SinglyLinkedList<Integer>(5);
         Integer actual = sll.get(0);
-
-        Assert.assertTrue(5 == actual);
-        //removing first element, no.
+        Assert.assertEquals((Integer) 5, actual);
     }
 
     @Test
-    public void remove2() {
+    public void get_emptyList() {
         SinglyLinkedList<Integer> sll = new SinglyLinkedList<Integer>();
-        sll.add(7);
-        sll.add(5);
-        sll.add(6);
-
-        sll.remove(1);
-        Integer actual = sll.get(1);
-
-        Assert.assertTrue(6 == actual);
+        Integer actual = sll.get(0);
+        Assert.assertEquals(null, actual);
     }
 
     @Test
-    public void remove3() {
+    public void get_indexGreaterThanLength() {
         SinglyLinkedList<Integer> sll = new SinglyLinkedList<Integer>();
-        sll.add(7);
-        sll.add(5);
-        sll.add(6);
-
-        sll.remove(2);
         Integer actual = sll.get(2);
-
-        Assert.assertTrue(null == actual);
+        Assert.assertEquals(null, actual);
     }
+
+
+//
+//    @Test
+//    public void remove1() {
+//        SinglyLinkedList<Integer> sll = new SinglyLinkedList<Integer>();
+//        sll.add(7);
+//        sll.add(5);
+//        sll.add(6);
+//
+//        sll.remove(0);
+//        Integer actual = sll.get(0);
+//
+//        Assert.assertTrue(5 == actual);
+//        //removing first element, no.
+//    }
+//
+//    @Test
+//    public void remove2() {
+//        SinglyLinkedList<Integer> sll = new SinglyLinkedList<Integer>();
+//        sll.add(7);
+//        sll.add(5);
+//        sll.add(6);
+//
+//        sll.remove(1);
+//        Integer actual = sll.get(1);
+//
+//        Assert.assertTrue(6 == actual);
+//    }
+//
+//    @Test
+//    public void remove3() {
+//        SinglyLinkedList<Integer> sll = new SinglyLinkedList<Integer>();
+//        sll.add(7);
+//        sll.add(5);
+//        sll.add(6);
+//
+//        sll.remove(2);
+//        Integer actual = sll.get(2);
+//
+//        Assert.assertTrue(null == actual);
+//    }
+//
+//    @Test
+//    public void get() {
+//        SinglyLinkedList<Integer> sll = new SinglyLinkedList<Integer>();
+//        sll.add(7);
+//        sll.add(5);
+//        sll.add(6);
+//
+//        sll.remove(2);
+//    }
 }
