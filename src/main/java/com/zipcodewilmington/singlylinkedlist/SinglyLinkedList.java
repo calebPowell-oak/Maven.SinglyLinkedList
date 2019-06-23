@@ -19,7 +19,6 @@ public class SinglyLinkedList<T>{
 
     private Node start;
     private Node end;
-    private Integer position;
 
     public void add(T content){
         if(start == null){
@@ -27,20 +26,61 @@ public class SinglyLinkedList<T>{
             end = start;
         } else {
             end.next = new Node(content);
+            end = end.next; // I don't want this anymore, I don't like it.
         }
     }
 
+    public void remove(Integer index) {
+        if(start == null){
+            return;
+        } else if(index == 0){
+            start = start.next;
+        }
+
+        Node current = start;
+        for(int i = 0; i < index - 1; i++) {
+            if(current.next == null) return;
+            current = current.next;
+        }
+        current.next = current.next.next;
+        if(current.next.next == null){
+            end = current;
+        }
+    }
+
+//    @Override
+//    public boolean equals(Object obj) {
+//        if (obj == this) {
+//            return true;
+//        }
+//        if (obj == null || obj.getClass() != this.getClass()) {
+//            return false;
+//        }
+//
+//        Node current = this.start;
+//        SinglyLinkedList other = (SinglyLinkedList) obj;
+//        other = other.getStart();
+//        while(current != null){
+//            if(other.getContent() != current.getContent()){
+//                return false;
+//            }
+//        }
+//    }
+
     public T get(Integer index){
         if(start == null)return null;
-        position = 0;
         Node current = start;
-        while(position < index){
-            if(current.next == null)return null;
-            else {
+        for(int i = 0; i < index; i++){
+            if(current.next == null){
+                return null;
+            } else {
                 current = current.next;
-                position++;
             }
         }
         return current.getContent();
+    }
+
+    public Node getStart() {
+        return start;
     }
 }
