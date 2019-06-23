@@ -18,4 +18,16 @@ public class SinglyLinkedListTest {
 
         Assert.assertEquals(expected, actual);
     }
+
+    @Test
+    public void add1() {
+        SinglyLinkedList<Integer> sll = new SinglyLinkedList<Integer>();
+        Integer expected = 665;
+        sll.add(7);
+        sll.add(expected);
+
+        Integer actual = sll.get(1);
+
+        Assert.assertEquals(expected, actual);
+    }
 }
