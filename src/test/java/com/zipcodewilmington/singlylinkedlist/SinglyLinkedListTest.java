@@ -211,6 +211,34 @@ public class SinglyLinkedListTest {
     }
 
     @Test
+    public void sort_checkFirst() {
+        SinglyLinkedList<Integer> sll = new SinglyLinkedList<Integer>();
+        sll.add(7);
+        sll.add(5);
+        sll.add(3);
+        Integer expected = 3;
+
+        sll.sort();
+        Integer actual = sll.get(0);
+
+        Assert.assertEquals(expected, actual);
+    }
+
+    @Test
+    public void sort_checkLast() {
+        SinglyLinkedList<Integer> sll = new SinglyLinkedList<Integer>();
+        sll.add(7);
+        sll.add(5);
+        sll.add(3);
+        Integer expected = 7;
+
+        sll.sort();
+        Integer actual = sll.get(2);
+
+        Assert.assertEquals(expected, actual);
+    }
+
+    @Test
     public void get() {
         SinglyLinkedList<Integer> sll = new SinglyLinkedList<Integer>();
         sll.add(7);

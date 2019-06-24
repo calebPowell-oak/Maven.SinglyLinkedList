@@ -27,7 +27,6 @@ public class SinglyLinkedList<T extends Comparable>{
     private Node start;
 
     public SinglyLinkedList() {
-        // this happens implicitly, but for readability ;)
         start = null;
     }
 
@@ -106,8 +105,20 @@ public class SinglyLinkedList<T extends Comparable>{
         return copy;
     }
 
-    public SinglyLinkedList Sort() {
-        return null;
+    public void sort() {
+        if(start == null) return;
+        Node current = start;
+        for(int i = 0; i < 3; i++){
+            while(current.next != null){
+                if(current.content.compareTo(current.next.content) > 0){
+                    T holding = current.content;
+                    current.content = current.next.content;
+                    current.next.content = holding;
+                }
+                current = current.next;
+            }
+            current = start;
+        }
     }
 
     public T get(Integer index){
