@@ -1,9 +1,12 @@
 package com.zipcodewilmington.singlylinkedlist;
 
+import java.util.ArrayList;
+import java.util.Collections;
+
 /**
  * Created by leon on 1/10/18.
  */
-public class SinglyLinkedList<T>{
+public class SinglyLinkedList<T extends Comparable>{
     class Node{
         private Node next;
         private T content;
@@ -98,49 +101,14 @@ public class SinglyLinkedList<T>{
         Node current = start;
         while(current != null){
             copy.add(current.content);
+            current = current.next;
         }
         return copy;
     }
 
-//
-//    /**
-//     * sorts by insertion order
-//     */
-//    public SinglyLinkedList sort() {
-//        return this;
-//    }
-//
-//    /**
-//     * this is for testing purposes only
-//     * @return
-//     */
-//    public int toIntArray() {
-//        int[] arr = new int[size()];
-//        for(int i = 0; i < size(); i++)
-//        {
-//            myArr.push(get(i))
-//        }
-//        retrun myArr
-//    }
-
-//    @Override
-//    public boolean equals(Object obj) {
-//        if (obj == this) {
-//            return true;
-//        }
-//        if (obj == null || obj.getClass() != this.getClass()) {
-//            return false;
-//        }
-//
-//        Node current = this.start;
-//        SinglyLinkedList other = (SinglyLinkedList) obj;
-//        other = other.getStart();
-//        while(current != null){
-//            if(other.getContent() != current.getContent()){
-//                return false;
-//            }
-//        }
-//    }
+    public SinglyLinkedList Sort() {
+        return null;
+    }
 
     public T get(Integer index){
         if(start == null)return null;

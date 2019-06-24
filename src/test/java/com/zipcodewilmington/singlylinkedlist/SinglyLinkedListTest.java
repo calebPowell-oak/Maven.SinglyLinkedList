@@ -135,55 +135,88 @@ public class SinglyLinkedListTest {
         Assert.assertEquals(null, actual);
     }
 
+    @Test
+    public void remove_removeFirstElement() {
+        SinglyLinkedList<Integer> sll = new SinglyLinkedList<Integer>();
+        sll.add(7);
+        sll.add(5);
+        sll.add(6);
 
-//
-//    @Test
-//    public void remove1() {
-//        SinglyLinkedList<Integer> sll = new SinglyLinkedList<Integer>();
-//        sll.add(7);
-//        sll.add(5);
-//        sll.add(6);
-//
-//        sll.remove(0);
-//        Integer actual = sll.get(0);
-//
-//        Assert.assertTrue(5 == actual);
-//        //removing first element, no.
-//    }
-//
-//    @Test
-//    public void remove2() {
-//        SinglyLinkedList<Integer> sll = new SinglyLinkedList<Integer>();
-//        sll.add(7);
-//        sll.add(5);
-//        sll.add(6);
-//
-//        sll.remove(1);
-//        Integer actual = sll.get(1);
-//
-//        Assert.assertTrue(6 == actual);
-//    }
-//
-//    @Test
-//    public void remove3() {
-//        SinglyLinkedList<Integer> sll = new SinglyLinkedList<Integer>();
-//        sll.add(7);
-//        sll.add(5);
-//        sll.add(6);
-//
-//        sll.remove(2);
-//        Integer actual = sll.get(2);
-//
-//        Assert.assertTrue(null == actual);
-//    }
-//
-//    @Test
-//    public void get() {
-//        SinglyLinkedList<Integer> sll = new SinglyLinkedList<Integer>();
-//        sll.add(7);
-//        sll.add(5);
-//        sll.add(6);
-//
-//        sll.remove(2);
-//    }
+        sll.remove(0);
+        Integer actual = sll.get(0);
+
+        Assert.assertTrue(5 == actual);
+    }
+
+    @Test
+    public void remove_removeMiddleElement() {
+        SinglyLinkedList<Integer> sll = new SinglyLinkedList<Integer>();
+        sll.add(7);
+        sll.add(5);
+        sll.add(6);
+
+        sll.remove(1);
+        Integer actual = sll.get(1);
+
+        Assert.assertTrue(6 == actual);
+    }
+
+    @Test
+    public void remove_removeLastElement() {
+        SinglyLinkedList<Integer> sll = new SinglyLinkedList<Integer>();
+        sll.add(7);
+        sll.add(5);
+        sll.add(6);
+
+        sll.remove(2);
+        Integer actual = sll.get(2);
+
+        Assert.assertTrue(null == actual);
+    }
+
+    @Test
+    public void copy_checkFirst(){
+        SinglyLinkedList<String> sll = new SinglyLinkedList<String>();
+        sll.add("Caleb");
+        sll.add("Lee");
+        sll.add("Powell");
+
+        SinglyLinkedList<String> copy = sll.copy();
+
+        Assert.assertTrue(sll.get(0).equals(copy.get(0)));
+    }
+
+    @Test
+    public void copy_checkMiddle(){
+        SinglyLinkedList<String> sll = new SinglyLinkedList<String>();
+        sll.add("Caleb");
+        sll.add("Lee");
+        sll.add("Powell");
+
+        SinglyLinkedList<String> copy = sll.copy();
+
+        Assert.assertTrue(sll.get(1).equals(copy.get(1)));
+    }
+
+    @Test
+    public void copy_checkLast(){
+        SinglyLinkedList<String> sll = new SinglyLinkedList<String>();
+        sll.add("Caleb");
+        sll.add("Lee");
+        sll.add("Powell");
+
+        SinglyLinkedList<String> copy = sll.copy();
+
+        Assert.assertTrue(sll.get(2).equals(copy.get(2)));
+    }
+
+    @Test
+    public void get() {
+        SinglyLinkedList<Integer> sll = new SinglyLinkedList<Integer>();
+        sll.add(7);
+        sll.add(5);
+        sll.add(6);
+
+        sll.remove(2);
+    }
 }
